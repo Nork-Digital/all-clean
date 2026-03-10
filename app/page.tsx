@@ -82,7 +82,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="inicio"
-        className="relative bg-gradient-to-br from-blue-50/50 to-background py-16 lg:py-24"
+        className="relative bg-linear-to-br from-blue-50/50 to-background py-16 lg:py-24"
       >
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -167,9 +167,9 @@ export default function Home() {
                 Entrar em contato
               </Button>
             </div>
-            <div className="relative h-80 lg:h-[480px] rounded-xl overflow-hidden">
+            <div className="relative h-80 lg:h-120 rounded-xl overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=800&fit=crop"
+                src=""
                 alt="Profissional de jardinagem"
                 fill
                 className="object-cover"
@@ -183,12 +183,12 @@ export default function Home() {
       <section className="relative py-16 lg:py-24">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&h=800&fit=crop"
+            src=""
             alt="Jardinagem profissional"
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40" />
+          <div className="absolute inset-0 bg-linear-to-r from-slate-900/80 to-slate-900/40" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row lg:justify-end lg:items-center gap-6 lg:gap-8">
