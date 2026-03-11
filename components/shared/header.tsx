@@ -1,63 +1,90 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import Image from "next/image";
+import { Menu } from "lucide-react";
 
 export function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 border-b border-border/40">
+    <header className="fixed top-0 z-50 w-full bg-background/15 backdrop-blur supports-backdrop-filter:bg-background/10">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z"
-              fill="#1E88E5"
-            />
-            <path
-              d="M22 12c-1.5-2-4-3-6-3s-4.5 1-6 3c-1 1.5-1 3.5 0 5 1.5 2 4 3 6 3s4.5-1 6-3c1-1.5 1-3.5 0-5z"
-              fill="#fff"
-            />
-            <path
-              d="M12 16c0-2.2 1.8-4 4-4"
-              stroke="#1E88E5"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-          <span className="text-xl font-semibold text-foreground">
-            all <span className="text-primary">clean</span> job
-          </span>
+          <Image
+            src={"/logo.png"}
+            width={276}
+            height={51}
+            alt="Logo All Clean"
+            className="max-w-30 lg:max-w-full h-auto"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           <Link
             href="#inicio"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            className="text-sm 2xl:text-base font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             Início
           </Link>
           <Link
             href="#servicos"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            className="text-sm 2xl:text-base font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             Serviços
           </Link>
           <Link
             href="#sobre"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            className="text-sm 2xl:text-base font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             Sobre nós
           </Link>
-          <Button asChild size="sm">
+          <Button asChild size="lg" className="2xl:text-base">
             <Link href="#contato">Contato</Link>
           </Button>
         </nav>
+
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="ghost" size="icon">
+              <Menu className="size-6 text-primary" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <SheetTitle className="sr-only">Menu</SheetTitle>
+            <nav className="flex flex-col gap-6 mt-16 px-8">
+              <Link
+                href="#inicio"
+                onClick={() => setOpen(false)}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Início
+              </Link>
+              <Link
+                href="#servicos"
+                onClick={() => setOpen(false)}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Serviços
+              </Link>
+              <Link
+                href="#sobre"
+                onClick={() => setOpen(false)}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Sobre nós
+              </Link>
+              <Button asChild size="sm">
+                <Link href="#contato" onClick={() => setOpen(false)}>
+                  Contato
+                </Link>
+              </Button>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );

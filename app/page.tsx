@@ -18,47 +18,48 @@ import {
   Sparkles,
   ClipboardList,
   Factory,
-  CheckCircle2,
   Phone,
   Mail,
   MapPin,
   Clock,
+  CheckCircle,
 } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
+import { ContactForm } from "@/components/shared/contact-form";
 
 const services = [
   {
-    icon: Users,
+    icon: "/icon-tercerizacao.png",
     title: "Terceirização de Serviços",
     description:
       "Gestão e execução de serviços terceirizados com equipe qualificada, garantindo organização, eficiência e padronização das atividades.",
   },
   {
-    icon: Leaf,
+    icon: "/icon-jardinagem.png",
     title: "Jardinagem",
     description:
       "Serviços de corte, poda, plantio e manutenção de jardins residenciais e empresariais.",
   },
   {
-    icon: Building2,
+    icon: "/icon-condos.png",
     title: "Manutenção de Condomínios",
     description:
       "Serviços de manutenção preventiva e corretiva para condomínios residenciais e comerciais, assegurando conservação das estruturas, bom funcionamento das instalações e valorização do patrimônio.",
   },
   {
-    icon: Sparkles,
+    icon: "/icon-limpeza.png",
     title: "Limpeza de Áreas",
     description: "Limpeza especializada de áreas externas e internas.",
   },
   {
-    icon: ClipboardList,
+    icon: "/icon-servicos.png",
     title: "Gestão de Serviços",
     description:
       "Gestão e acompanhamento de serviços com equipe especializada, do planejamento à conclusão.",
   },
   {
-    icon: Factory,
+    icon: "/icon-industriais.png",
     title: "Serviços Industriais",
     description:
       "Manutenção especializada de parques e áreas industriais, com foco na conservação das áreas externas.",
@@ -80,22 +81,24 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section
-        id="inicio"
-        className="relative bg-linear-to-br from-blue-50/50 to-background py-16 lg:py-24"
-      >
-        <div className="container mx-auto px-4">
+      <section id="inicio" className="relative py-16 lg:py-24 min-h-screen">
+        <div className="absolute inset-0">
+          <video autoPlay muted className="w-full h-full object-cover">
+            <source src="/bg-hero-home.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="container px-4 z-10 absolute top-1/2 -translate-y-1/2 left-0 right-0 mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h1 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight text-balance">
+              <h1 className="text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-secondary-foreground leading-tight text-balance">
                 Serviços especializados para condomínios e indústrias
               </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg 2xl:text-2xl text-secondary-foreground max-w-lg leading-relaxed">
                 Terceirização, jardinagem, limpeza, manutenção e facilities para
                 condomínios e indústrias na cidade de Indaiatuba e região
                 metropolitana de Campinas.
               </p>
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
+              <Button size="lg" variant={"secondary"} className="text-xl">
                 Solicitar orçamento
               </Button>
             </div>
@@ -105,22 +108,27 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-16 lg:py-24 bg-slate-50">
+      <section id="servicos" className="py-16 lg:py-24 lg:-mt-48 z-10 relative">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <Card
                 key={index}
-                className="border border-border/50 bg-background hover:shadow-lg transition-shadow"
+                className="border border-border/50 bg-background rounded-sm hover:shadow-lg transition-shadow"
               >
                 <CardContent className="p-6 space-y-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <service.icon className="w-6 h-6 text-primary" />
+                  <div className="flex items-center justify-start">
+                    <Image
+                      src={service.icon}
+                      width={80}
+                      height={80}
+                      alt={service.title}
+                    />
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">
+                  <h3 className="text-lg lg:text-2xl font-semibold text-primary">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>
                 </CardContent>
@@ -134,8 +142,8 @@ export default function Home() {
       <section id="sobre" className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-foreground">
+            <div className="space-y-4">
+              <h2 className="text-3xl lg:text-4xl font-bold text-primary">
                 Sobre a All Clean Job
               </h2>
               <p className="text-muted-foreground leading-relaxed">
@@ -144,7 +152,7 @@ export default function Home() {
                 indústrias e facilities, comprometida com a excelência e
                 satisfação dos clientes.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-sm">
                 Contamos com uma equipe qualificada e utilizamos produtos de
                 alta qualidade para garantir ambientes limpos, organizados e
                 saudáveis para nossos clientes residenciais e empresariais.
@@ -155,23 +163,21 @@ export default function Home() {
                     key={index}
                     className="flex items-center gap-3 text-muted-foreground"
                   >
-                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
+                    <CheckCircle className="w-6 h-6 text-[#C7C95C] shrink-0" />
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
-              <Button
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              >
+              <Button size="lg" variant={"secondary"} className="text-lg mt-8">
                 Entrar em contato
               </Button>
             </div>
-            <div className="relative h-80 lg:h-120 rounded-xl overflow-hidden">
+            <div className="relative w-full h-full rounded-xl overflow-hidden">
               <Image
-                src=""
+                src="/image-about-home.png"
                 alt="Profissional de jardinagem"
-                fill
+                width={536}
+                height={700}
                 className="object-cover"
               />
             </div>
@@ -180,36 +186,33 @@ export default function Home() {
       </section>
 
       {/* Vision & Mission Section */}
-      <section className="relative py-16 lg:py-24">
-        <div className="absolute inset-0">
+      <section className="py-16 lg:py-24">
+        <div className="flex flex-col xl:flex-row gap-8 xl:gap-0 items-center px-8 lg:px-24">
           <Image
-            src=""
+            src="/image-pillars-home.png"
             alt="Jardinagem profissional"
-            fill
-            className="object-cover"
+            width={1088}
+            height={741}
           />
-          <div className="absolute inset-0 bg-linear-to-r from-slate-900/80 to-slate-900/40" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row lg:justify-end lg:items-center gap-6 lg:gap-8">
-            <Card className="max-w-md bg-primary/95 border-0">
+          <div className="space-y-8">
+            <Card className="xl:max-w-lg 2xl:max-w-2xl bg-primary rounded-sm text-secondary lg:p-8 border-0 xl:-ml-32">
               <CardContent className="p-6 space-y-3">
-                <h3 className="text-xl font-semibold text-primary-foreground">
+                <h3 className="text-xl lg:text-2xl 2xl:text-4xl font-semibold">
                   Nossa Visão
                 </h3>
-                <p className="text-sm text-primary-foreground/90 leading-relaxed">
+                <p className="leading-relaxed text-base 2xl:text-lg">
                   Ser reconhecida como referência em serviços de limpeza
                   profissional, expandindo nossa atuação e mantendo os mais
                   altos padrões de qualidade e eficiência.
                 </p>
               </CardContent>
             </Card>
-            <Card className="max-w-md bg-background/95 border-0">
+            <Card className="xl:max-w-lg 2xl:max-w-2xl bg-secondary text-primary rounded-sm border-0 lg:p-8 xl:-ml-64">
               <CardContent className="p-6 space-y-3">
-                <h3 className="text-xl font-semibold text-primary">
+                <h3 className="text-xl lg:text-2xl 2xl:text-4xl font-semibold">
                   Nossa Missão
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="leading-relaxed text-base 2xl:text-lg">
                   Proporcionar serviços de limpeza de alta qualidade,
                   contribuindo para ambientes mais saudáveis e agradáveis, com
                   compromisso com a satisfação do cliente, responsabilidade
@@ -222,15 +225,16 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contato" className="py-16 lg:py-24 bg-slate-50">
+      <section
+        id="contato"
+        className="py-16 lg:py-24 from-secondary via-slate-300 to-primary bg-linear-to-br"
+      >
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="space-y-6 text-secondary-foreground">
               <div>
-                <h2 className="text-2xl font-bold text-foreground mb-2">
-                  Entre em Contato
-                </h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-3xl font-bold mb-2">Entre em Contato</h2>
+                <p className="text-lg lg:text-2xl max-w-md">
                   Solicite um orçamento ou tire suas dúvidas sobre nossos
                   serviços de terceirização, jardinagem e manutenção para
                   condomínios e indústrias.
@@ -238,20 +242,20 @@ export default function Home() {
               </div>
 
               <div className="space-y-4">
-                <h3 className="font-semibold text-primary">
+                <h3 className="font-semibold text-xl text-secondary-foreground">
                   Informações de Contato
                 </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-muted-foreground">
-                    <Phone className="w-5 h-5 text-primary" />
+                <ul className="space-y-3 text-lg">
+                  <li className="flex items-center gap-3 ">
+                    <Phone className="w-5 h-5 text-secondary-foreground" />
                     <span>(19) 98326-7315</span>
                   </li>
-                  <li className="flex items-center gap-3 text-muted-foreground">
-                    <Mail className="w-5 h-5 text-primary" />
+                  <li className="flex items-center gap-3 ">
+                    <Mail className="w-5 h-5 text-secondary-foreground" />
                     <span>contato@allcleanjob.com.br</span>
                   </li>
-                  <li className="flex items-start gap-3 text-muted-foreground">
-                    <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+                  <li className="flex items-start gap-3 ">
+                    <MapPin className="w-5 h-5 text-secondary-foreground shrink-0" />
                     <span>
                       Indaiatuba - SP
                       <br />
@@ -262,105 +266,32 @@ export default function Home() {
               </div>
 
               <div className="space-y-3">
-                <h3 className="font-semibold text-foreground">
+                <h3 className="font-semibold text-xl">
                   Horário de Atendimento
                 </h3>
-                <div className="space-y-1 text-sm text-muted-foreground">
+                <div className="space-y-1 text-lg">
                   <p className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-primary" />
                     <span>
-                      <strong>Segunda - Sexta:</strong> 08:00 - 18:00
+                      <strong>Segunda - Sexta:</strong>
+                      <br />
+                      08:00 - 18:00
                     </span>
                   </p>
-                  <p className="pl-6">
-                    <strong>Sábado:</strong> 08:00 - 12:00
+                  <p>
+                    <strong>Sábado:</strong>
+                    <br />
+                    08:00 - 12:00
                   </p>
-                  <p className="pl-6">
-                    <strong>Domingo:</strong> Fechado
+                  <p>
+                    <strong>Domingo:</strong>
+                    <br />
+                    Fechado
                   </p>
                 </div>
               </div>
             </div>
 
-            <Card className="bg-background border-border/50">
-              <CardContent className="p-6 space-y-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">
-                    Nome completo
-                  </label>
-                  <Input placeholder="Seu nome" />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">
-                      Email
-                    </label>
-                    <Input type="email" placeholder="seu@email.com" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">
-                      Telefone
-                    </label>
-                    <Input type="tel" placeholder="(00) 00000-0000" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">
-                    Serviço de Interesse
-                  </label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione um Serviço" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="terceirizacao">
-                        Terceirização de Serviços
-                      </SelectItem>
-                      <SelectItem value="jardinagem">Jardinagem</SelectItem>
-                      <SelectItem value="manutencao">
-                        Manutenção de Condomínios
-                      </SelectItem>
-                      <SelectItem value="limpeza">Limpeza de Áreas</SelectItem>
-                      <SelectItem value="gestao">Gestão de Serviços</SelectItem>
-                      <SelectItem value="industrial">
-                        Serviços Industriais
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">
-                    Mensagem
-                  </label>
-                  <Textarea placeholder="Descreva sua necessidade" rows={4} />
-                </div>
-                <div className="flex items-center justify-between pt-2">
-                  <Button className="bg-primary hover:bg-primary/90">
-                    Enviar mensagem
-                  </Button>
-                  <div className="flex items-center gap-3">
-                    <a
-                      href="#"
-                      className="text-primary hover:text-primary/80 transition-colors"
-                    >
-                      <FaFacebook size={20} />
-                    </a>
-                    <a
-                      href="#"
-                      className="text-primary hover:text-primary/80 transition-colors"
-                    >
-                      <FaInstagram size={20} />
-                    </a>
-                    <a
-                      href="#"
-                      className="text-primary hover:text-primary/80 transition-colors"
-                    >
-                      <FaLinkedin size={20} />
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <ContactForm />
           </div>
         </div>
       </section>
