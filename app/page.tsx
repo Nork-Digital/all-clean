@@ -109,7 +109,7 @@ export default function Home() {
             <source src="/bg-hero-home.mp4" type="video/mp4" />
           </video>
         </div>
-        <div className="px-[5%] lg:px-[10%]  z-10 absolute top-1/2 -translate-y-1/2 left-0 right-0 mx-auto">
+        <div className="px-[5%] lg:px-[10%]  z-10 absolute top-1/2 -translate-y-1/2 left-0 right-0 mx-auto z-10">
           <div className="grid xl:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h1 className="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-secondary-foreground leading-tight text-balance">
@@ -123,14 +123,11 @@ export default function Home() {
                 condomínios e indústrias na cidade de Indaiatuba e região
                 metropolitana de Campinas.
               </p>
-              <Button
-                size="lg"
-                variant={"secondary"}
-                className="text-xl"
-                asChild
-              >
-                <Link href={"/#contato"}>Solicitar orçamento</Link>
-              </Button>
+              <Link href={"/#contato"}>
+                <Button size="lg" variant={"secondary"} className="text-xl">
+                  Solicitar orçamento
+                </Button>
+              </Link>
             </div>
             <div className="hidden lg:block" />
           </div>
@@ -138,7 +135,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-16 lg:py-24 lg:-mt-48 z-10 relative">
+      <section id="servicos" className="py-16 lg:py-24 lg:-mt-32 z-10 relative">
         <div className="px-[5%] lg:px-[10%] mx-auto ">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
