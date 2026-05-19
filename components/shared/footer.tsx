@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
 
 export function Footer() {
@@ -35,12 +35,6 @@ export function Footer() {
                 className="text-secondary-foreground hover:text-primary transition-colors"
               >
                 <FaInstagram size={25} />
-              </Link>
-              <Link
-                href="#"
-                className="text-secondary-foreground hover:text-primary transition-colors"
-              >
-                <FaLinkedin size={25} />
               </Link>
             </div>
           </div>
@@ -143,22 +137,42 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Phone size={25} className="text-secondary-foreground" />
-                <span>(19) 98326-7315</span>
+                <Link
+                  href="tel:+5519983267315"
+                  target="_blank"
+                  className="hover:underline"
+                >
+                  (19) 98326-7315
+                </Link>
               </li>
+
               <li className="flex items-center gap-2">
                 <Mail size={25} className="text-secondary-foreground" />
-                <span>contato@allcleanjob.com.br</span>
+                <Link
+                  href="mailto:contato@allcleanjob.com.br"
+                  target="_blank"
+                  className="hover:underline"
+                >
+                  contato@allcleanjob.com.br
+                </Link>
               </li>
+
               <li className="flex items-start gap-2">
                 <MapPin
                   size={25}
                   className="text-secondary-foreground mt-0.5"
                 />
-                <span>
-                  Indaiatuba - SP
-                  <br />
-                  Região Metropolitana de Campinas
-                </span>
+                <Link
+                  href="https://maps.google.com/?q=Indaiatuba+SP"
+                  target="_blank"
+                  className="hover:underline"
+                >
+                  <span>
+                    Indaiatuba - SP
+                    <br />
+                    Região Metropolitana de Campinas
+                  </span>
+                </Link>
               </li>
             </ul>
           </div>

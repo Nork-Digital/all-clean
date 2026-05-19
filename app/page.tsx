@@ -24,9 +24,15 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaWhatsapp,
+} from "react-icons/fa";
 import Image from "next/image";
 import { ContactForm } from "@/components/shared/contact-form";
+import Link from "next/link";
 
 const services = [
   {
@@ -80,26 +86,50 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header />
 
+      <Link
+        target="_blank"
+        href={
+          "https://api.whatsapp.com/send/?phone=5519983267315&text=Ol%C3%A1+vim+pelo+site+e+gostaria+de+informa%C3%A7%C3%B5es+sobre&type=phone_number&app_absent=0"
+        }
+        className="fixed bottom-4 right-4 bg-green-500 z-50 rounded-full p-3 cursor-pointer"
+      >
+        <FaWhatsapp className="size-12 text-white" />
+      </Link>
+
       {/* Hero Section */}
-      <section id="inicio" className="relative py-16 lg:py-24 min-h-screen">
-        <div className="absolute inset-0">
+      <section
+        id="inicio"
+        className="relative py-16 lg:py-24 min-h-screen"
+        style={{
+          backgroundImage: "url('/image-hero.png')",
+        }}
+      >
+        <div className="absolute inset-0 hidden lg:block">
           <video autoPlay muted className="w-full h-full object-cover">
             <source src="/bg-hero-home.mp4" type="video/mp4" />
           </video>
         </div>
-        <div className="container px-4 z-10 absolute top-1/2 -translate-y-1/2 left-0 right-0 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="px-[5%] lg:px-[10%]  z-10 absolute top-1/2 -translate-y-1/2 left-0 right-0 mx-auto">
+          <div className="grid xl:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h1 className="text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-secondary-foreground leading-tight text-balance">
-                Serviços especializados para condomínios e indústrias
+              <h1 className="text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-secondary-foreground leading-tight text-balance">
+                Serviços
+                <br /> especializados
+                <br /> para condomínios
+                <br /> e indústrias
               </h1>
-              <p className="text-lg 2xl:text-2xl text-secondary-foreground max-w-lg leading-relaxed">
+              <p className="text-lg 2xl:text-xl text-secondary-foreground max-w-lg leading-relaxed">
                 Terceirização, jardinagem, limpeza, manutenção e facilities para
                 condomínios e indústrias na cidade de Indaiatuba e região
                 metropolitana de Campinas.
               </p>
-              <Button size="lg" variant={"secondary"} className="text-xl">
-                Solicitar orçamento
+              <Button
+                size="lg"
+                variant={"secondary"}
+                className="text-xl"
+                asChild
+              >
+                <Link href={"/#contato"}>Solicitar orçamento</Link>
               </Button>
             </div>
             <div className="hidden lg:block" />
@@ -109,7 +139,7 @@ export default function Home() {
 
       {/* Services Section */}
       <section id="servicos" className="py-16 lg:py-24 lg:-mt-48 z-10 relative">
-        <div className="container mx-auto px-4">
+        <div className="px-[5%] lg:px-[10%] mx-auto ">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <Card
@@ -140,7 +170,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="sobre" className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="px-[5%] lg:px-[10%] mx-auto ">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-4">
               <h2 className="text-3xl lg:text-4xl font-bold text-primary">
@@ -168,8 +198,13 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <Button size="lg" variant={"secondary"} className="text-lg mt-8">
-                Entrar em contato
+              <Button
+                size="lg"
+                variant={"secondary"}
+                className="text-lg mt-8"
+                asChild
+              >
+                <Link href={"/#contato"}>Entrar em contato</Link>
               </Button>
             </div>
             <div className="relative w-full h-full rounded-xl overflow-hidden">
@@ -229,7 +264,7 @@ export default function Home() {
         id="contato"
         className="py-16 lg:py-24 from-secondary via-slate-300 to-primary bg-linear-to-br"
       >
-        <div className="container mx-auto px-4">
+        <div className="px-[5%] lg:px-[10%] mx-auto ">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             <div className="space-y-6 text-secondary-foreground">
               <div>
@@ -246,21 +281,41 @@ export default function Home() {
                   Informações de Contato
                 </h3>
                 <ul className="space-y-3 text-lg">
-                  <li className="flex items-center gap-3 ">
+                  <li className="flex items-center gap-3">
                     <Phone className="w-5 h-5 text-secondary-foreground" />
-                    <span>(19) 98326-7315</span>
+                    <Link
+                      href="tel:+5519983267315"
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      (19) 98326-7315
+                    </Link>
                   </li>
-                  <li className="flex items-center gap-3 ">
+
+                  <li className="flex items-center gap-3">
                     <Mail className="w-5 h-5 text-secondary-foreground" />
-                    <span>contato@allcleanjob.com.br</span>
+                    <Link
+                      href="mailto:contato@allcleanjob.com.br"
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      contato@allcleanjob.com.br
+                    </Link>
                   </li>
-                  <li className="flex items-start gap-3 ">
+
+                  <li className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-secondary-foreground shrink-0" />
-                    <span>
-                      Indaiatuba - SP
-                      <br />
-                      Região Metropolitana de Campinas
-                    </span>
+                    <Link
+                      href="https://maps.google.com/?q=Indaiatuba+SP"
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      <span>
+                        Indaiatuba - SP
+                        <br />
+                        Região Metropolitana de Campinas
+                      </span>
+                    </Link>
                   </li>
                 </ul>
               </div>

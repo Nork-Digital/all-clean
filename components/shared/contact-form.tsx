@@ -32,7 +32,7 @@ const formSchema = z.object({
   email: z.email("E-mail inválido"),
   telefone: z.string().min(10, "Telefone inválido"),
   servico: z.string({ error: "Selecione um serviço" }),
-  mensagem: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres"),
+  mensagem: z.string().min(5, "Mensagem deve ter pelo menos 5 caracteres"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -54,17 +54,27 @@ export function ContactForm() {
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: FormValues) {
-    const res = await fetch("/contact-form", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+    try {
+      const mensagem = `
+*Nome*: ${values.nome}
+*Email*: ${values.email}
+*Telefone*: ${values.telefone}
+*Serviço*: ${values.servico}
+*Mensagem*: ${values.mensagem}
+    `.trim();
 
-    if (res.ok) {
-      setSuccess(true);
+      const whatsappUrl = `https://wa.me/5519983267315?text=${encodeURIComponent(
+        mensagem,
+      )}`;
+
+      window.open(whatsappUrl, "_blank");
+
       form.reset();
-    } else {
-      form.setError("root", { message: "Erro ao enviar. Tente novamente." });
+      setSuccess(true);
+    } catch (error) {
+      form.setError("root", {
+        message: "Erro ao enviar. Tente novamente.",
+      });
     }
   }
 
@@ -218,12 +228,6 @@ export function ContactForm() {
                   className="text-secondary hover:text-primary transition-colors"
                 >
                   <FaInstagram size={30} />
-                </a>
-                <a
-                  href="#"
-                  className="text-secondary hover:text-primary transition-colors"
-                >
-                  <FaLinkedin size={30} />
                 </a>
               </div>
             </div>
